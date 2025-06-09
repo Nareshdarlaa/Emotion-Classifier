@@ -1,44 +1,32 @@
-# Emotion Classifier 
+# 🤖 Emotion Classifier using DistilBERT + Gradio
 
-This project is an interactive emotion classifier that takes a sentence as input and predicts the most likely emotional tone—such as Happy, Sad, Angry, or Neutral. It uses the TF-IDF text vectorizer and the powerful XGBoost classifier for robust and accurate predictions. The application is deployed with a user-friendly interface using Gradio.
-
----
-
-## Dataset Used
-
-**[DAIR-AI Emotion Dataset](https://huggingface.co/datasets/dair-ai/emotion)**  
-- Source: Hugging Face `datasets` library  
-- Type: Text classification  
-- Classes: `sadness`, `joy`, `love`, `anger`, `fear`, `surprise`  
-- Format: Each sample consists of a sentence and an associated emotion label.
+This project demonstrates a real-time **Emotion Detection** system using **DistilBERT**, a lightweight transformer model fine-tuned for emotion classification, with a clean and interactive **Gradio UI**. It classifies text inputs into one of several emotions like **joy**, **sadness**, **anger**, **fear**, **surprise**, or **love**.
 
 ---
 
-## Approach Summary
+## 📁 Dataset Used
 
-1. **Data Loading**  
-   - Loaded from the Hugging Face `dair-ai/emotion` dataset.
-   - Converted to Pandas DataFrame for manipulation.
-
-2. **Preprocessing**  
-   - Removed English stopwords.
-   - Converted sentences into TF-IDF vectors with a vocabulary size limit (`max_features=5000`).
-
-3. **Modeling**  
-   - Used `XGBoost Classifier` for multi-class classification.
-   - Evaluated with a **confusion matrix** on the test data.
-
-4. **UI with Gradio**  
-   - Built an interactive UI with tabs:
-     - **Predict Emotion**: Type text and get predicted emotions with probabilities.
-     - **Confusion Matrix**: Visualizes model performance on test data.
-   - Provided examples for quick testing.
+- **Name:** `dair-ai/emotion`
+- **Source:** Hugging Face Datasets ([Link](https://huggingface.co/datasets/dair-ai/emotion))
+- **Description:** A curated dataset of text samples annotated with six basic emotions: `joy`, `sadness`, `anger`, `fear`, `surprise`, and `love`.
 
 ---
 
-## How to Run
+## 🚀 Approach Summary
 
-### Clone the Repo
+1. **Text Input** is processed using a pretrained Hugging Face model:
+   - `bhadresh-savani/distilbert-base-uncased-emotion`
+   - This model captures semantic meaning and context, including **negation handling**.
+2. The app is divided into two interactive tabs:
+   - **Prediction Tab:** Users input text and receive top emotion predictions with probability scores.
+   - **Confusion Matrix Tab:** Displays a confusion matrix on a sample test set to evaluate model performance.
+3. **Gradio UI** is used to create a browser-based interface with examples and tabbed layout.
+
+---
+
+## 📦 Dependencies
+
+Install all required packages via pip:
+
 ```bash
-git clone https://github.com/your-username/emotion-classifier-xgboost.git
-cd emotion-classifier-xgboost
+pip install gradio transformers torch datasets scikit-learn matplotlib
